@@ -34,4 +34,16 @@ public class ClockDisplay
         minutos.setValue(m);
     }
     
+    public void avanzarHora()
+    {
+        minutos.increment();
+        if (minutos.getValue() == 0){
+            horas.increment();
+        }
+    }
+     
+    public String verHora()
+    {
+        return horas.getDisplayValue() + ":" + minutos.getDisplayValue();
+    }
 }
