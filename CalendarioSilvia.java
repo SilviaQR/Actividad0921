@@ -9,11 +9,11 @@ public class CalendarioSilvia
 {
     // instance variables - replace the example below with your own
     
-    private int dia;
+    private DisplayDosDigitos dia;
     
-    private int mes;
+    private DisplayDosDigitos mes;
     
-    private int año;
+    private DisplayDosDigitos año;
     
 
     /**
@@ -22,9 +22,9 @@ public class CalendarioSilvia
     public CalendarioSilvia()
     {
         // initialise instance variables
-        dia = 01;
-        mes = 01;
-        año = 01;
+       dia = new DisplayDosDigitos(31);
+       mes = new DisplayDosDigitos(13);
+       año = new DisplayDosDigitos(100);
     }
 
     /**
@@ -36,31 +36,24 @@ public class CalendarioSilvia
     public void fijarFecha(int d, int m, int a)
     {
         // put your code here
-        dia = d;
-        mes = m;
-        año = a;
+        dia.setValor(d);
+        mes.setValor(m);
+        año.setValor(a);
     }
     
     public void avanzarFecha()
     {
-        dia = dia + 1;
-        if(dia > 30) {
-            dia = 1;
-            mes = mes + 1;
-           if(mes > 12) {
-               mes = 1;
-               año = año + 1;
-            }
-        }
-    }
-    public String mostrarFecha(String diaUnDigito, String mesUnDigito, String añoUnDigito)
-    {
-       if(año > 99) {
-        return ("Error");
-    }    
-        else {
-            return (dia + " - " + mes + " - " + año);
-    }
-    }
+       dia.incrementaValor();
+        if (dia.getValor() == 1) {
+            mes.incrementaValor();
+           if (mes.getValor() == 1) {
+               año.incrementaValor();
+           }
+       }
+     }
     
+    public String mostrarFecha()
+    {
+        return dia.getValorDelDisplay() + "-" + mes.getValorDelDisplay() + "-" + año.getValorDelDisplay();
+    }
 }
